@@ -32,10 +32,11 @@ A API estará disponível em http://localhost:8080.
 Para testar os endpoints abaixo. Todos os exemplos assumem que você configurou o ambiente corretamente.
 Cadastrar um Centro
 Cria um novo centro comunitário.
-POST http://localhost:8080/centers
+``POST http://localhost:8080/centers``
+
 body: application/json
 
-{
+``{
   "id": "68815b1396ef83016f0fee2e",
   "nome": "Centro Comunitário A",
   "endereco": "Rua Exemplo, 123",
@@ -52,12 +53,12 @@ body: application/json
     "veiculos": 1,
     "cestasBasicas": 10
   }
-}
+}``
 
 Resposta: 201 Created com os dados do centro.
 Atualizar Ocupação
 Atualiza a ocupação de um centro.
-PUT http://localhost:8080/centers/(id)/occupancy
+``PUT http://localhost:8080/centers/(id)/occupancy``
 Body: text/plain
 
 75
@@ -65,9 +66,9 @@ Body: text/plain
 Resposta: 200 OK com os dados atualizados do centro.
 Realizar Intercâmbio
 Troca recursos entre dois centros. Exemplo com ocupação > 90% no destino.
-POST http://localhost:8080/centers/exchange
+``POST http://localhost:8080/centers/exchange``
 body: application/json
-
+``
 {
   "centroOrigemId": "(ID)",
   "centroDestinoId": "(ID)",
@@ -86,11 +87,11 @@ body: application/json
     "cestasBasicas": 0
   }
 }
-
+``
 Pré-condição: Crie o centro destino com ocupacaoAtual: 91:
-POST http://localhost:8080/centers
+``POST http://localhost:8080/centers``
 body: application/json
-
+``
 {
   "id": "68815ab396ef83016f0fee2d",
   "nome": "Centro Comunitário B",
@@ -108,39 +109,35 @@ body: application/json
     "veiculos": 1,
     "cestasBasicas": 5
   }
-}
+}``
 
 Resposta: 201 Created com os detalhes da negociação.
 Relatório: Centros com Ocupação > 90%
 Lista centros com ocupação superior a 90%.
-GET http://localhost:8080/centers/high-occupancy
+``GET http://localhost:8080/centers/high-occupancy``
 
 Resposta: 200 OK com lista de centros (ex.: Centro B com ocupacaoAtual: 91).
 Relatório: Média de Recursos
 Calcula a média de recursos por centro.
-GET http://localhost:8080/centers/resources-average
+``GET http://localhost:8080/centers/resources-average``
 
-Resposta: 200 OK, exemplo:
+Resposta: 200 OK, exemplo:``
 {
   "medicos": 1.5,
   "voluntarios": 3.0,
   "kitsMedicos": 1.5,
   "veiculos": 1.0,
   "cestasBasicas": 7.5
-}
+}``
 
 Relatório: Histórico de Negociações
 Lista negociações de um centro, com filtro opcional por data.
-GET http://localhost:8080/centers/(id)/exchanges?dataInicio=2025-07-23T17:06:15-03:00
+``GET http://localhost:8080/centers/(id)/exchanges?dataInicio=2025-07-23T17:06:15-03:00``
 
 Resposta: 200 OK com lista de negociações do centro no período.
-5. Explorar Documentação Swagger
-Acesse a interface interativa do Swagger:
 
-URL: http://localhost:8080/swagger-ui.html
-Teste os endpoints diretamente no navegador.
 
-6. Verificar Dados no MongoDB
+5. Verificar Dados no MongoDB
 docker exec -it mongodb mongosh -u admin -p admin
 use community_center
 db.centros.find().pretty()
