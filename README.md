@@ -12,7 +12,7 @@ Esta é uma API RESTful para gerenciamento de centros comunitários, permitindo 
 
 ### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/seu-usuario/community-api.git
+git clone  https://github.com/theceliosantos/phoebus-teste.git
 cd community-api
 ```
 
